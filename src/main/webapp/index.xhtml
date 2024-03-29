@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <title>Affectation </title>
+    </h:head>
+    <h:body>
+        <div class="center-text">
+            <h:commandButton action="add.xhtml?faces-redirect=true" value="Add Employee" class="btn btn-success"></h:commandButton>
+        </div>
+        <div class="center-text">
+            <h:commandButton action="home.xhtml?faces-redirect=true" value="back to home" class="btn btn-success"></h:commandButton>
+        </div>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="employee" value="Choisir un employé :"/>
+                <p:selectOneMenu id="employee" value="#{pro.selectedEmployee}">
+                    <f:selectItem itemLabel="-- Sélectionner un employé --" itemValue="#{null}"/>
+                    <f:selectItems value="#{pro.employees}" var="employee"
+                                   itemLabel="#{emp.name}" itemValue="#{employee}"/>
+                </p:selectOneMenu>
+
+                <h:outputLabel for="project" value="Nom du projet :"/>
+                <p:inputText id="project" value="#{pro.selectedProject.name}"/>
+
+                <h:outputLabel for="percentage" value="Pourcentage d'implication :"/>
+                <p:selectOneMenu id="percentage" value="#{pro.percentage}">
+                    <f:selectItem itemLabel="-- Sélectionner un pourcentage --" itemValue="#{null}"/>
+                    <f:selectItem itemValue="10" itemLabel="10%"/>
+                    <f:selectItem itemValue="20" itemLabel="20%"/>
+                    <f:selectItem itemValue="30" itemLabel="30%"/>
+                    <f:selectItem itemValue="40" itemLabel="40%"/>
+                    <f:selectItem itemValue="50" itemLabel="50%"/>
+                    <f:selectItem itemValue="60" itemLabel="60%"/>
+                    <f:selectItem itemValue="70" itemLabel="70%"/>
+                    <f:selectItem itemValue="80" itemLabel="80%"/>
+                    <f:selectItem itemValue="90" itemLabel="90%"/>
+                    <f:selectItem itemValue="100" itemLabel="100%"/>
+                </p:selectOneMenu>
+
+                <h:panelGroup/>
+                <p:commandButton value="Affecter Projet" action="#{pro.assignProjectToEmployee}"
+                                 ajax="false"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</f:view>
+</html>
